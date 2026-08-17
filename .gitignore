@@ -1,0 +1,23 @@
+# Environments
+venv/
+.venv/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# ML pipeline artifacts
+Artifacts/
+logs/
+final_model/
+prediction_output/
+Network_Data/
+valid_data/
+
+# IDE
+.idea/
+
+# OS
+.DS_Store
