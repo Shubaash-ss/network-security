@@ -11,7 +11,6 @@ __pycache__/
 # ML pipeline artifacts
 Artifacts/
 logs/
-final_model/
 prediction_output/
 Network_Data/
 valid_data/
@@ -21,3 +20,8 @@ valid_data/
 
 # OS
 .DS_Store
+
+# Exceptions: keep trained model artifacts so cloned repo works out of the box
+!final_model/
+!final_model/model.pkl
+!final_model/preprocessor.pkl
