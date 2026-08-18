@@ -60,7 +60,6 @@ class ModelTrainer:
             mlflow.log_metric("f1_score",f1_score)
             mlflow.log_metric("precision",precision_score)
             mlflow.log_metric("recall_score",recall_score)
-            mlflow.sklearn.log_model(best_model,name="model")
             # Model registry does not work with file store
             if tracking_url_type_store != "file":
 
