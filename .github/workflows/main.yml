@@ -56,20 +56,7 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
           IMAGE_TAG: latest
         run: |
-          echo "DEBUG: ECR_REGISTRY=$ECR_REGISTRY"
-          echo "DEBUG: ECR_REPOSITORY=$ECR_REPOSITORY"
-          echo "DEBUG: Full image reference: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-          
-          if [ -z "$ECR_REGISTRY" ]; then
-            echo "ERROR: ECR_REGISTRY is empty - ECR login may have failed"
-            exit 1
-          fi
-          
-          if [ -z "$ECR_REPOSITORY" ]; then
-            echo "ERROR: ECR_REPOSITORY is empty - check secrets.ECR_REPOSITORY_NAME"
-            exit 1
-          fi
-          
+          echo "Building image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
@@ -94,7 +81,9 @@ jobs:
 
       - name: Pull latest images
         run: |
-          docker pull ${{ secrets.AWS_ECR_LOG_IN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+          FULL_IMAGE_URI="${{ secrets.AWS_ECR_LOG_IN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest"
+          echo "Pulling: $FULL_IMAGE_URI"
+          docker pull $FULL_IMAGE_URI
 
       - name: Stop and remove container if running
         run: |
