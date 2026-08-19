@@ -1,4 +1,4 @@
-# trigger CD run
+# trigger CD run v2
 FROM python:3.10-slim-bookworm
 WORKDIR /app
 COPY . /app
