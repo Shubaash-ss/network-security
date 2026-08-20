@@ -96,6 +96,9 @@ jobs:
             -e 'AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}' \
             -e 'AWS_REGION=${{ secrets.AWS_REGION }}' \
             -e 'MONGO_DB_URL=${{ secrets.MONGO_DB_URL }}' \
+            -e 'MLFLOW_TRACKING_URI=${{ secrets.MLFLOW_TRACKING_URI }}' \
+            -e 'MLFLOW_TRACKING_USERNAME=${{ secrets.MLFLOW_TRACKING_USERNAME }}' \
+            -e 'MLFLOW_TRACKING_PASSWORD=${{ secrets.MLFLOW_TRACKING_PASSWORD }}' \
             ${{ secrets.AWS_ECR_LOG_IN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
       - name: Clean previous images and containers
